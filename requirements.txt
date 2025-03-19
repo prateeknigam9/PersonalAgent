@@ -1,0 +1,7 @@
+crewai
+crewai_tools
+langchain-groq
+langchain-google-community
+langchain-google-community[gmail]
+langgraph
+langchain
