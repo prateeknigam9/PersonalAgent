@@ -1,5 +1,8 @@
 from crewai import Agent, LLM
+from configuration_file import misc_config
 
+config = misc_config()
+llm_model = LLM(model=config['agent_model'], base_url=config['base_url'])
 
 class MailAgent:
     def getMailAgent():
@@ -11,8 +14,8 @@ class MailAgent:
             ),
             goal = "Handle Prateek's Mail",
             verbose=True,
-            llm = LLM(model="gemma2-9b-it", base_url="https://api.groq.com/openai/v1")
-            # llm=LLM(model="ollama/llama3.2", base_url="http://localhost:11434")
+            llm = llm_model
+            
         )
         
     def postMailAgent():
@@ -24,6 +27,21 @@ class MailAgent:
             ),
             goal = "Write Mails for prateek",
             verbose=True,
-            llm = LLM(model="gemma2-9b-it", base_url="https://api.groq.com/openai/v1")
-            # llm=LLM(model="ollama/llama3.2", base_url="http://localhost:11434")
+            llm = llm_model
         )
+    
+class contactManagementAgent:
+    def contact_manager():        
+        return Agent(
+            role = "Contact Manager",
+            backstory = (
+                "You have been managing the contact book"
+                "You work as an Expert in contact management."
+                "You have a file based contact database, that you can query, add the details to and update the details. " 
+                "You are efficient in reading, editing and updating a JSON File."               
+            ),
+            goal = "Manging contact details in the document for Prateek",
+            verbose=True,
+            llm = llm_model
+        )
+    

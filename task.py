@@ -1,7 +1,6 @@
 from crewai import Task
 from tools import GetMailTool, GetThreadTool, MailSearchTool, MailSendTool, MailDraftTool
-
-
+from tools import FindContactDBTool, WriteContactDB, UpdateContactDB
 
 
 class MailTasks:
@@ -29,3 +28,25 @@ class MailTasks:
             agent = agent,
             tools=[MailSendTool(), MailDraftTool()]
         )
+
+class ContactManagementTasks:
+    def contact_manager_task(agent,contact_db_file:str='contacts.json'):
+        return Task(
+            description=(
+                "The user has mentioned a query \n"
+                "Classify the query as intents : save_contact, query_contact, update_contact\n"
+                "if the query is to save_contact use tool : WriteContactDB\n"
+                "if the query is to query_contact use tool : FindContactDBTool\n"
+                "if the query is to update_contact use tool : UpdateContactDB\n"
+                "if the query is to save_contact or update_contact: Extract and return user_inp: dict(name: , relation: , phone: , email_id:)\n"
+                "query : {query} \n"
+                f"the database to refer is {contact_db_file} .\n"
+                "Note: if you do not find the contact information in the database, return None \n"
+                "if finding contact: Return format should be dictionary"
+            ),
+            expected_output = "user_inp: dict(name: , relation: , phone: , email_id:)",
+            agent = agent,
+            tools =[FindContactDBTool, WriteContactDB(),UpdateContactDB()]
+
+        )
+

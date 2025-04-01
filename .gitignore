@@ -1,0 +1,13 @@
+__pycache__/agents.cpython-310.pyc
+__pycache__/config.cpython-310.pyc
+__pycache__/configuration_file.cpython-310.pyc
+__pycache__/crew.cpython-310.pyc
+__pycache__/langchain.cpython-310.pyc
+__pycache__/model_manager.cpython-310.pyc
+__pycache__/task.cpython-310.pyc
+__pycache__/tools.cpython-310.pyc
+__pycache__/utility.cpython-310.pyc
+random/app_file.py
+random/blog.html
+random/lchain.py
+random/mailAgent.py

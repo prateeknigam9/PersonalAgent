@@ -5,3 +5,5 @@ langchain-google-community
 langchain-google-community[gmail]
 langgraph
 langchain
+crewai[tools]
+scikit-learn
